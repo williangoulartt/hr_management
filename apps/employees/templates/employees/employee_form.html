@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block main %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form | bootstrap }}
+        <button type="submit" class="btn btn-info">Save</button>
+    </form>
+<br>
+<h2>Documents</h2>
+<ul>
+{% for document in object.document_set.all %}
+    <li>
+        <a href="{{ document.file.url }} "> {{ document.description }}  </a><br>
+    </li>
+{% endfor %}
+</ul>
+
+{% if object %}
+<a href="{% url 'create_document' object.id %}" class="btn btn-success">
+    Add document
+</a>
+{% endif %}
+
+<br>
+
+<br>
+<h2>Banco de horas</h2>
+<ul>
+{% for register in object.overtimeregister_set.all %}
+    <li>
+        <a href="{% url 'update_overtime' register.id %}">
+            {{ register.reason  }} | {{ register.hours }} <br>
+        </a>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

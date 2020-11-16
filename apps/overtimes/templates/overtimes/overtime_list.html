@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    Bank of Hours
+<br>
+    {% for register in object_list %}
+
+        <a href="{% url 'edit_overtime' register.id %}">
+            {{ register }}
+        </a>
+        <a href="{% url 'delete_overtime' register.id %}">
+            Delete
+        </a>
+        <br>
+    {% endfor %}
+
+    {% if not object_list %}
+        <h3>There are no overtime records in the database</h3>
+    {% endif %}
+
+{% endblock %}

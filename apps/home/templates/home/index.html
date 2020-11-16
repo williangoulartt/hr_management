@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block main %}
+<div class="row">
+    <div class="col-sm">
+        <a href="{% url 'list_overtime' %}">List Overtime</a>
+    </div>
+    <div class="col-sm">
+      <h2>Welcome -  {{ user.employee.name }}</h2>
+    </div>
+    <div class="col-sm">
+        {% if user.employee.company %}
+            <a href="{% url 'edit_company' user.employee.company.id  %}">Edit Company</a>
+        {% else %}
+            <a href="">Register Company</a>
+        {% endif %}
+            <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+{% endblock %}
+

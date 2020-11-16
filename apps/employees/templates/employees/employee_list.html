@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block main %}
+    {% for employee in object_list %}
+        <a href="{% url 'update_employee' employee.id %}">
+            {{ employee }}
+        </a>
+        <a href="{% url 'delete_employee' employee.id %}">
+            Delete
+        </a>
+        <br>
+{% endfor %}
+<a href="{% url 'create_employee' %}" class="btn btn-info">New Employee</a>
+{% endblock %}
